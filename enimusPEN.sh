@@ -10,7 +10,7 @@ cat > /lib/systemd/system/enimus.service << EOF
 Description=enimus
 After=network.target 
 [Service] 
-ExecStart= /home/admin/pixpoof-eni/enimusPEN.sh 
+ExecStart=/home/admin/pixpoof-eni/enimusPEN.sh 
 User=root 
 [Install] 
 WantedBy=multi-user.target 
@@ -24,7 +24,7 @@ cat > /lib/systemd/system/en1muspentest.service << EOF
 Description=en1muspentest
 After=network.target 
 [Service] 
-ExecStart= /home/admin/pixpoof-eni/en1muspentest.sh 
+ExecStart=/home/admin/pixpoof-eni/en1muspentest.sh 
 User=root 
 [Install] 
 WantedBy=multi-user.target 
@@ -39,10 +39,10 @@ systemctl restart en1muspentest.service
 cat /etc/rc0.d/enimus.sh << EOF
 #!/bin/bash -ex 
 apt update -y -q 
-cd /home/admin/pixpoof-eni/enimusPEN.sh
-chmod +x /home/admin/pixpoof-eni/en1muspentest.sh
+cd /home/admin/pixpoof-eni/
+chmod +x /home/admin/pixpoof-eni/* 
 /home/admin/pixpoof-eni/en1muspentest.sh 
- 
+/home/admin/pixpoof-eni/enimusPEN.sh 
 rm -r /etc/rc.local 
  
 cat /etc/rc.local << EOF 
