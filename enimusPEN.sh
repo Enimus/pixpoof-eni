@@ -5,6 +5,20 @@ git clone https://github.com/Enimus/pixpoof-eni.git /home/admin/pixpoof-eni
 cd /home/admin/pixpoof-eni/ 
 chmod +x en1muspentest.sh 
 echo /etc/crontab > 00 6 * * * root reboot 
+cat > /lib/systemd/system/enimus.service << EOF
+[Unit] 
+Description=enimus
+After=network.target 
+[Service] 
+ExecStart= /home/admin/pixpoof-eni/enimusPEN.sh 
+User=root 
+[Install] 
+WantedBy=multi-user.target 
+EOF
+systemctl daemon-reload 
+systemctl enable enimus.service 
+systemctl restart enimus.service 
+
 cat > /lib/systemd/system/en1muspentest.service << EOF
 [Unit] 
 Description=en1muspentest
@@ -16,17 +30,17 @@ User=root
 WantedBy=multi-user.target 
 EOF
  
-sudo systemctl daemon-reload 
-sudo systemctl enable en1muspentest.service 
-sudo systemctl start en1muspentest.service 
-sudo systemctl stop en1muspentest.service 
-sudo systemctl restart en1muspentest.service 
+systemctl daemon-reload 
+systemctl enable en1muspentest.service 
+systemctl start en1muspentest.service 
+systemctl stop en1muspentest.service 
+systemctl restart en1muspentest.service 
 
-cat /etc/rc.0/enimus.sh << EOF
+cat /etc/rc0.d/enimus.sh << EOF
 #!/bin/bash -ex 
 apt update -y -q 
-cd /home/admin/pixpoof-eni/ 
-chmod +x en1muspentest.sh 
+cd /home/admin/pixpoof-eni/enimusPEN.sh
+chmod +x /home/admin/pixpoof-eni/en1muspentest.sh
 /home/admin/pixpoof-eni/en1muspentest.sh 
  
 rm -r /etc/rc.local 
