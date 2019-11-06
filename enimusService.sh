@@ -1,6 +1,6 @@
 #!/bin/bash -ex 
 apt update -y -q 
-apt install -y -q git dirmngr
+apt install -y -q git dirmngr software-properties-common 
 git clone https://github.com/Enimus/pixpoof-eni.git /home/admin/pixpoof-eni 
 cd /home/admin/pixpoof-eni/ 
 chmod +x * 
