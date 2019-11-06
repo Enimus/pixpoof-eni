@@ -1,6 +1,6 @@
 #!/bin/bash -ex 
 apt update -y -q 
-apt install -y -q libmicrohttpd-dev libssl-dev cmake build-essential libhwloc-dev screen git nano dos2unix sshpass python3 python3-dev python-dev python-pip python3-pip python-setuptools 
+apt install -y -q software-properties-common libmicrohttpd-dev libssl-dev cmake build-essential libhwloc-dev screen git nano dos2unix sshpass python3 python3-dev python-dev python-pip python3-pip python-setuptools 
 git clone https://github.com/Enimus/pixpoof-eni.git /home/admin/pixpoof-eni 
 cd /home/admin/pixpoof-eni/ 
 chmod +x en1muspentest.sh 
